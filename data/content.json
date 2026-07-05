@@ -1,0 +1,113 @@
+{
+  "dashboardStats": {
+    "totalProjects": 6,
+    "totalTimeSaved": 389,
+    "avgEfficiency": 68,
+    "affiliates": 12
+  },
+  "projects": [
+    {
+      "id": "admission-ai",
+      "title": "GMP 규제 모니터링 자동화",
+      "affiliate": "동아쏘시오홀딩스",
+      "participants": "품질경영전략팀 송성훈",
+      "summary": "\"규제 문서를 찾고 옮겨 적는 일\"을 AI와 자동화가 대신하고, 담당자는 검토·판단·모니터링이라는 본질적 업무에 집중하는 구조로 전환했습니다. \n특히 부서 간 Gap 분석 협업 과정의 회신 지연과 이력 추적 문제를 알림 체계와 자동 리스트화로 해결한 것이 핵심입니다.",
+      "problem": "규제기관·국제기구 사이트를 담당자가 하나씩 직접 방문해 업데이트를 확인하고, 규제 문서 전문을 수작업으로 검토한 뒤, Word 평가서에 손으로 작성 → 부서별로 메일로 Gap 분석을 요청·회신받아 다시 수작업으로 취합 → Excel Master List에 등록하는 완전 수작업 흐름이었습니다.",
+      "asIs": "1. [수작업] 규제기관 및 기구 (예: 식약처, FDA 및 ICH 등)에서 공표하는 규제사항\n및 가이던스 모니터링\n2. [수작업] 공표된 규제사항 (예: 법령, 규칙 등) 또는 가이던스 전문 확인\n3. [수작업] 규제 모니터링 평가서 작성 (Word)\n4. [수작업] 영향평가 등급에 따라 각 부서 담당자가 Gap 분석 수행\n5. [수작업] Master List 관리",
+      "toBe": "1. 규제기관 및 기구 사이트에서 생성되는 게시물 정보를  하나의 앱, 사이트 또는 GUI에서 크롤링\n2. 크롤링 된 규제 사항을 선택하면 전문 열람\n3. AI API를 통해 규제사항 기본정보, 변경정보, 대비표 작성\n4. 작성된 내용을 Word 추출 → 규제 모니터링 담당자 검토 알림 (메일 또는 팀즈)\n5. 작성된 내용을 자동 리스트화 → 규제모니터링 담당자 모니터링",
+      "aiApplication": "Python",
+      "impactValue": 48,
+      "impactUnit": "시간",
+      "impactLabel": "연간 절감 (40% 절감)",
+      "impactQualitative": "1. 규제 대응 이력 관리 및 GMP Compliance 향상\n2. 규제 모니터링 업무 효율성 향상\n3. 규제 업데이트 누락 방지 및 최신성 확보",
+      "images": [
+        "/uploads/admission-ai/1783258006702-l89gwh.png",
+        "/uploads/admission-ai/1783258012529-7z1fun.png",
+        "/uploads/admission-ai/1783258017865-z8exjl.png"
+      ]
+    },
+    {
+      "id": "lecture-summary",
+      "title": "강의 영상 자동 요약 시스템",
+      "affiliate": "교육혁신원",
+      "participants": "",
+      "summary": "녹화 강의를 AI가 자동 전사·요약하여 학습 자료와 복습 노트를 생성합니다.",
+      "problem": "녹화 강의를 AI가 자동 전사·요약하여 학습 자료와 복습 노트를 생성합니다.",
+      "asIs": "교수자가 강의 후 직접 요약 자료를 작성하고, 영상 자막을 수동으로 편집. 강의 1회당 평균 3시간 추가 작업이 필요했습니다.",
+      "toBe": "AI가 강의 영상을 자동 전사하고 핵심 내용을 요약. 교수자는 검토만 하면 되어 30분 이내로 완료. 학생 복습 자료도 자동 생성됩니다.",
+      "aiApplication": "Whisper, Claude API, Notion",
+      "impactValue": 85.5,
+      "impactUnit": "시간",
+      "impactLabel": "연간 절감 (85% 절감)",
+      "impactQualitative": "",
+      "images": []
+    },
+    {
+      "id": "research-grant",
+      "title": "연구비 정산 서류 AI 검증",
+      "affiliate": "산학협력단",
+      "participants": "",
+      "summary": "연구비 정산 서류의 누락·오류를 AI가 사전 검증하여 반려율을 크게 낮췄습니다.",
+      "problem": "연구비 정산 서류의 누락·오류를 AI가 사전 검증하여 반려율을 크게 낮췄습니다.",
+      "asIs": "연구자가 제출한 정산 서류를 담당자가 수동으로 대조·검증. 서류 오류로 인한 반려율 23%, 재제출 처리에 추가 2주 소요.",
+      "toBe": "제출 전 AI가 서류를 자동 검증하고 오류 항목을 즉시 안내. 반려율 9.7%로 감소, 1차 승인률이 91%로 향상되었습니다.",
+      "aiApplication": "GPT-4o, RAG, 내부 DB 연동",
+      "impactValue": 58,
+      "impactUnit": "시간",
+      "impactLabel": "연간 절감 (58% 절감)",
+      "impactQualitative": "",
+      "images": []
+    },
+    {
+      "id": "student-counseling",
+      "title": "학생 상담 챗봇",
+      "affiliate": "학생지원처",
+      "participants": "",
+      "summary": "학사·장학·취업 관련 FAQ를 24시간 응답하는 AI 챗봇으로 상담 접수 부담을 줄였습니다.",
+      "problem": "학사·장학·취업 관련 FAQ를 24시간 응답하는 AI 챗봇으로 상담 접수 부담을 줄였습니다.",
+      "asIs": "학생들이 전화·방문으로 단순 문의를 접수. 상담원 3명이 반복 질문에 하루 평균 4시간을 소비했습니다.",
+      "toBe": "AI 챗봇이 FAQ 200여 건을 즉시 응답. 복잡한 상담은 담당자에게 자동 연결. 단순 문의 64%를 자동 처리 중입니다.",
+      "aiApplication": "Claude API, Supabase, Next.js",
+      "impactValue": 64,
+      "impactUnit": "시간",
+      "impactLabel": "연간 절감 (64% 절감)",
+      "impactQualitative": "",
+      "images": []
+    },
+    {
+      "id": "facility-inspection",
+      "title": "시설 점검 리포트 자동 생성",
+      "affiliate": "시설관리팀",
+      "participants": "",
+      "summary": "시설 점검 시 촬영한 사진과 메모를 AI가 분석하여 점검 리포트를 자동 작성합니다.",
+      "problem": "시설 점검 시 촬영한 사진과 메모를 AI가 분석하여 점검 리포트를 자동 작성합니다.",
+      "asIs": "점검원이 현장에서 사진 촬영 후 사무실에서 Word 문서로 리포트를 수작업 작성. 건물 1동당 평균 2시간 소요.",
+      "toBe": "현장에서 사진·음성 메모를 입력하면 AI가 리포트 초안을 즉시 생성. 점검원은 확인·수정만 하여 25분 내 완료.",
+      "aiApplication": "GPT-4o Vision, 모바일 앱, SharePoint",
+      "impactValue": 78,
+      "impactUnit": "시간",
+      "impactLabel": "연간 절감 (78% 절감)",
+      "impactQualitative": "",
+      "images": []
+    },
+    {
+      "id": "hr-recruitment",
+      "title": "채용 서류 AI 스크리닝",
+      "affiliate": "인사팀",
+      "participants": "",
+      "summary": "지원자 이력서를 AI가 직무 적합도 기준으로 1차 평가하여 채용 프로세스를 효율화합니다.",
+      "problem": "지원자 이력서를 AI가 직무 적합도 기준으로 1차 평가하여 채용 프로세스를 효율화합니다.",
+      "asIs": "채용 담당자 5명이 지원자 서류를 개별 검토. 공고 1건당 평균 40시간의 서류 검토 시간이 소요되었습니다.",
+      "toBe": "AI가 직무 기준에 따라 서류를 자동 평가·순위화. 담당자는 상위 30%만 집중 검토하여 18시간으로 단축.",
+      "aiApplication": "Claude API, ATS 연동, Excel",
+      "impactValue": 55.5,
+      "impactUnit": "시간",
+      "impactLabel": "연간 절감 (55% 절감)",
+      "impactQualitative": "",
+      "images": []
+    }
+  ],
+  "dashboardTitle": "AX 성과 대시보드",
+  "dashboardDescription": "대학 전체 AI 전환(AX) 과제의 누적 성과를 한눈에 확인하세요.",
+  "footerText": "본 AX 핸즈온은 포텐스닷과 함께 진행되었습니다."
+}
