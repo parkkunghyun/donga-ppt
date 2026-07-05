@@ -11,26 +11,51 @@ async function isAuthenticated() {
 }
 
 export async function GET() {
-  if (!(await isAuthenticated())) {
-    return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
+  try {
+    if (!(await isAuthenticated())) {
+      return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
+    }
+
+    const content = await getContent();
+    return NextResponse.json(content);
+  } catch (error) {
+    console.error("GET /api/admin/data failed:", error);
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "콘텐츠를 불러오지 못했습니다.",
+      },
+      { status: 500 }
+    );
   }
-  const content = await getContent();
-  return NextResponse.json(content);
 }
 
 export async function PUT(request: Request) {
-  if (!(await isAuthenticated())) {
-    return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
+  try {
+    if (!(await isAuthenticated())) {
+      return NextResponse.json({ error: "인증이 필요합니다." }, { status: 401 });
+    }
+
+    const body = (await request.json()) as SiteContent;
+    await saveContent(body);
+
+    revalidatePath("/");
+    revalidatePath("/projects/[id]", "page");
+    for (const project of body.projects) {
+      revalidatePath(`/projects/${project.id}`);
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("PUT /api/admin/data failed:", error);
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error ? error.message : "저장에 실패했습니다.",
+      },
+      { status: 500 }
+    );
   }
-
-  const body = (await request.json()) as SiteContent;
-  await saveContent(body);
-
-  revalidatePath("/");
-  revalidatePath("/projects/[id]", "page");
-  for (const project of body.projects) {
-    revalidatePath(`/projects/${project.id}`);
-  }
-
-  return NextResponse.json({ success: true });
 }

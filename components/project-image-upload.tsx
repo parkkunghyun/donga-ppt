@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { fetchJson } from "@/lib/fetch-json";
 
 interface ProjectImageUploadProps {
   projectId: string;
@@ -23,16 +24,11 @@ export function ProjectImageUpload({
     formData.append("file", file);
     formData.append("projectId", projectId);
 
-    const res = await fetch("/api/admin/upload", {
+    const data = await fetchJson<{ url: string }>("/api/admin/upload", {
       method: "POST",
       body: formData,
     });
-
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.error ?? "업로드에 실패했습니다.");
-    }
-    return data.url as string;
+    return data.url;
   }
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -61,12 +57,16 @@ export function ProjectImageUpload({
   }
 
   async function handleRemove(url: string) {
-    await fetch("/api/admin/upload", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
-    onChange(images.filter((img) => img !== url));
+    try {
+      await fetchJson("/api/admin/upload", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+      onChange(images.filter((img) => img !== url));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "삭제에 실패했습니다.");
+    }
   }
 
   return (

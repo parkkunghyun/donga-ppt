@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Project, SiteContent } from "@/lib/types";
+import { fetchJson } from "@/lib/fetch-json";
 import { createEmptyProject, syncContent } from "@/lib/project-utils";
 import { ProjectImageUpload } from "./project-image-upload";
 
@@ -250,12 +251,19 @@ function AdminEditor({ onLogout }: { onLogout: () => void }) {
   const [content, setContent] = useState<SiteContent | null>(null);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [loadError, setLoadError] = useState("");
   const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/admin/data")
-      .then((res) => res.json())
-      .then(setContent);
+    fetchJson<SiteContent>("/api/admin/data")
+      .then(setContent)
+      .catch((error) => {
+        setLoadError(
+          error instanceof Error
+            ? error.message
+            : "콘텐츠를 불러오지 못했습니다."
+        );
+      });
   }, []);
 
   function applySync(next: SiteContent): SiteContent {
@@ -268,18 +276,20 @@ function AdminEditor({ onLogout }: { onLogout: () => void }) {
 
     const synced = applySync(next);
 
-    const res = await fetch("/api/admin/data", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(synced),
-    });
-
-    setSaving(false);
-    if (res.ok) {
+    try {
+      await fetchJson("/api/admin/data", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(synced),
+      });
       setContent(synced);
       setMessage(notice ?? "저장되었습니다.");
-    } else {
-      setMessage("저장에 실패했습니다.");
+    } catch (error) {
+      setMessage(
+        error instanceof Error ? error.message : "저장에 실패했습니다."
+      );
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -319,6 +329,10 @@ function AdminEditor({ onLogout }: { onLogout: () => void }) {
     const next = applySync({ ...content, projects });
     if (expandedProjectId === project.id) setExpandedProjectId(null);
     await persistContent(next, "과제가 삭제되었습니다.");
+  }
+
+  if (loadError) {
+    return <p className="text-[14px] text-red-600">{loadError}</p>;
   }
 
   if (!content) {
