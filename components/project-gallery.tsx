@@ -61,7 +61,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
         <div
           className={`grid gap-4 ${
             images.length === 1
-              ? "grid-cols-1"
+              ? "grid-cols-1 max-w-sm sm:max-w-md lg:max-w-lg"
               : images.length === 2
                 ? "grid-cols-1 sm:grid-cols-2"
                 : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
@@ -81,7 +81,11 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
                   alt={`${title} 결과 이미지 ${index + 1}`}
                   fill
                   className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes={
+                    images.length === 1
+                      ? "512px"
+                      : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  }
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-main/0 transition-colors group-hover:bg-main/10">
                   <span className="rounded-full bg-main/80 px-3 py-1 text-[12px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100">
