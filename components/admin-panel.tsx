@@ -132,13 +132,6 @@ function ProjectEditor({
                 className={inputClass}
               />
             </Field>
-            <Field label="계열사">
-              <input
-                value={project.affiliate}
-                onChange={(e) => update("affiliate", e.target.value)}
-                className={inputClass}
-              />
-            </Field>
             <Field label="누가 했는지">
               <input
                 value={project.participants ?? ""}
@@ -409,7 +402,7 @@ function AdminEditor({ onLogout }: { onLogout: () => void }) {
 
       <section className="space-y-4 rounded-xl border border-border bg-bg p-6">
         <h2 className="text-[18px] font-bold text-main">대시보드 통계</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Field label="총 AX 과제 (자동)">
             <input
               type="number"
@@ -436,22 +429,6 @@ function AdminEditor({ onLogout }: { onLogout: () => void }) {
                   dashboardStats: {
                     ...content.dashboardStats,
                     avgEfficiency: Number(e.target.value),
-                  },
-                })
-              }
-              className={inputClass}
-            />
-          </Field>
-          <Field label="참여 계열사">
-            <input
-              type="number"
-              value={content.dashboardStats.affiliates}
-              onChange={(e) =>
-                setContent({
-                  ...content,
-                  dashboardStats: {
-                    ...content.dashboardStats,
-                    affiliates: Number(e.target.value),
                   },
                 })
               }

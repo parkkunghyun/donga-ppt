@@ -48,12 +48,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
         <div className="space-y-10 bg-bg">
           <div>
-            <div className="mb-4 flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-surface px-2.5 py-1 text-[11px] text-muted">
-                {project.affiliate}
-              </span>
-            </div>
-
             <h1 className="mb-3 text-[26px] font-bold leading-tight text-main">
               {project.title}
             </h1>

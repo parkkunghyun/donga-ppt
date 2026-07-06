@@ -15,18 +15,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
     >
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-4 flex items-start justify-between gap-4">
-          <span className="rounded-md bg-surface px-2.5 py-1 text-[12px] text-muted">
-            {project.affiliate}
-          </span>
+          <h3 className="flex-1 text-[18px] font-bold leading-snug text-main">
+            {project.title}
+          </h3>
           <IconArrowRight
             size={18}
             className="shrink-0 text-muted group-hover:text-accent"
           />
         </div>
-
-        <h3 className="mb-4 text-[18px] font-bold leading-snug text-main">
-          {project.title}
-        </h3>
         {project.participants && (
           <p className="mb-4 text-[13px] text-muted">{project.participants}</p>
         )}

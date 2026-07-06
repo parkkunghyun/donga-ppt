@@ -4,7 +4,6 @@ import { MultilineText } from "@/components/multiline-text";
 import { ProjectCard } from "@/components/project-card";
 import { StatCard } from "@/components/stat-card";
 import {
-  IconBuilding,
   IconChart,
   IconClock,
   IconTrending,
@@ -30,7 +29,7 @@ export default async function Home() {
           </MultilineText>
         </section>
 
-        <section className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <StatCard
             label="총 AX 과제"
             value={dashboardStats.totalProjects}
@@ -49,12 +48,6 @@ export default async function Home() {
             value={dashboardStats.avgEfficiency}
             suffix="%"
             icon={<IconTrending size={20} />}
-          />
-          <StatCard
-            label="참여 계열사"
-            value={dashboardStats.affiliates}
-            suffix="개"
-            icon={<IconBuilding size={20} />}
           />
         </section>
 
