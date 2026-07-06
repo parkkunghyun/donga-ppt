@@ -47,6 +47,7 @@ export default async function Home() {
             label="평균 효율 개선"
             value={dashboardStats.avgEfficiency}
             suffix="%"
+            decimals={1}
             icon={<IconTrending size={20} />}
           />
         </section>

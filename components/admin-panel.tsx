@@ -419,23 +419,19 @@ function AdminEditor({ onLogout }: { onLogout: () => void }) {
               className={`${inputClass} bg-surface text-muted`}
             />
           </Field>
-          <Field label="평균 효율 개선 (%)">
+          <Field label="평균 효율 개선 (Impact 라벨 % 평균, 자동)">
             <input
               type="number"
               value={content.dashboardStats.avgEfficiency}
-              onChange={(e) =>
-                setContent({
-                  ...content,
-                  dashboardStats: {
-                    ...content.dashboardStats,
-                    avgEfficiency: Number(e.target.value),
-                  },
-                })
-              }
-              className={inputClass}
+              readOnly
+              className={`${inputClass} bg-surface text-muted`}
             />
           </Field>
         </div>
+        <p className="text-[12px] text-muted">
+          각 과제 Impact 설명 라벨의 절감 %를 평균한 값입니다. 예: &quot;연간
+          절감 (40% 절감)&quot;
+        </p>
       </section>
 
       <section className="space-y-4">

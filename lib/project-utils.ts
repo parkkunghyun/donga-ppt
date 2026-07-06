@@ -1,4 +1,5 @@
 import type { DashboardStats, Project, SiteContent } from "./types";
+import { calcAvgSavingsPercent } from "./format-impact";
 
 type LegacyProject = Partial<Project> & {
   department?: string;
@@ -57,6 +58,9 @@ export function syncDashboardStats(
     totalTimeSaved: projects.reduce(
       (sum, project) => sum + (Number(project.impactValue) || 0),
       0
+    ),
+    avgEfficiency: calcAvgSavingsPercent(
+      projects.map((project) => project.impactLabel)
     ),
   };
 }
