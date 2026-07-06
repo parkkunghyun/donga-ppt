@@ -9,10 +9,10 @@ export function Header() {
           <Image
             src="/logo2.png"
             alt="동아쏘시오그룹"
-            width={180}
-            height={36}
+            width={200}
+            height={40}
             priority
-            className="h-8 w-auto"
+            className="h-10 w-auto"
           />
           <span className="hidden h-5 w-px bg-border sm:block" />
           <p className="hidden text-[15px] font-bold text-[#231F20] sm:block">
